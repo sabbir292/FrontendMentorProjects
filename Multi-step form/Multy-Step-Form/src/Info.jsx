@@ -37,11 +37,11 @@ export default function Info(props){
 
                     <label>
                         Phone Number  
-                        {!props.phoneNumber && <span className="alert">This feild is requied!</span>}
+                        {!props.number && <span className="alert">This feild is requied!</span>}
                          <input type="number" 
                          placeholder="eg. +1 2345 67" 
-                          name="phoneNumber"
-                          value= {props.phoneNumber}
+                          name="number"
+                          value= {props.number}
                           onChange={props.updateInfo} 
 
                          />

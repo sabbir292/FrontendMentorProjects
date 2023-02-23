@@ -264,6 +264,15 @@ input.active{
     margin: 1rem 0;
     border-radius: 10px;
 }
+.monthly.yearOn{
+    color: var(--Cool-gray);
+}
+.yearly{
+    color: var(--Cool-gray);
+}
+.yearly.monthOn{
+    color: var(--marine-blue);
+}
 
 /* ************************toggle plans***************************** */
 .toggle{

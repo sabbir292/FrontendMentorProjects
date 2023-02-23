@@ -8,6 +8,7 @@ import Addons from "./Addons";
 import Checkout from "./Checkout";
 
 export default function App(){
+   // *********states**********************
    const [navigation, setNavigation] = React.useState({
       yourInfo: true,
       selectPlan: false,
@@ -18,8 +19,38 @@ export default function App(){
    const [info, setInfo]=React.useState({
       name:'',
       email:'',
-      phoneNumber: null,
+      number: '',
    })
+
+   const [togglePlan,setTogglePlan] = React.useState({
+      monthlyplan:true,
+      yearlyplan:false,
+      arcadeMonthly: '$9/mo',
+      arcadeYearly: '$90/mo',
+      advanceMonthly: '$15/mo',
+      advanceYearly: '$120/mo',
+      proMonthly: '$20/mo',
+      proYearly: '$150/mo',
+      arcade : false,
+      advance:false,
+      pro:false,
+   })
+
+   const [addons, setAddOns] = React.useState({
+      onlineService: false,
+      extraStorage: false,
+      customizeProfile:false,
+      onlineServiceMonthlyPrice : '$1/mo',
+      extraStorageMonthlyPrice : '$1/mo',
+      customizeProfileMonthlyPrice : '$1/mo',
+      onlineServiceYearlyPrice: '$10/yr',
+      extraStorageYearlyPrice: '$20/yr',
+      customizeProfileYearlyPrice: '$20/yr',
+
+   })
+// *********states**********************
+
+// *********Functions**********************
 
    function handleNavigation(event){
       // console.log(event.target.className)
@@ -62,6 +93,7 @@ export default function App(){
       }
    }
 
+
    function updateInfo(e){
       // console.log(e.target.value)
       const {name,value}= e.target
@@ -71,49 +103,116 @@ export default function App(){
       }))
    }
 
-// function handleBack(){
-//    console.log('back')
-// }
-function handleNext(){
-   if(!info.email || !info.name || !info.phoneNumber){
-      alert("this feild is requied")
-   }else{console.log("next")}
-// if(!info.name){
-//       setAlert(prev=>({
-//          ...alert,
-//          nameAlert:true,
-//          emailAlert:false,
-//          phoneAlert:false,
-//       }))
-//    }else if(!info.email){
-//       setAlert(prev=>({
-//          ...alert,
-//          emailAlert:true,
-//          nameAlert:false,
-//          phoneAlert:false,
 
-//       }))
-//    }else if(!info.phoneNumber){
-//       setAlert(prev=>({
-//          ...alert,
-//          phoneAlert:true,
-//          nameAlert:false,
-//          emailAlert:false
-         
-//       }))
-//    }else{
-//       setAlert(prev=>({
-//          ...alert,
-//          phoneAlert:false,
-//          nameAlert:false,
-//          emailAlert:false
-         
-//       }))
-//    }
+function handleNext(){
+      if(info.name && info.email && info.number){
+         setNavigation(prev=>({
+            ...navigation,
+            yourInfo: false,
+            selectPlan:true,
+            addOns: false,
+            summary:false
+      }))
+   }
+
+   if(navigation.selectPlan){
+      setNavigation(prev=>({
+         ...prev,
+         addOns: true,
+         selectPlan: false,
+         yourInfo: false,
+         summary: false
+      }))
+   }
+   if(navigation.addOns){
+      setNavigation(prev=>({
+         ...prev,
+         addOns: false,
+         summary: true,
+         yourInfo: false,
+         selectPlan: false,
+      }))
+   }
+
+   }
+
+function handleBack(){
+   if(!navigation.yourInfo && navigation.selectPlan){
+      setNavigation(prev=>({
+         ...prev,
+         yourInfo: true,
+         selectPlan: false
+      }))
+    }
+    if(navigation.addOns){
+      setNavigation(prev=>({
+         ...prev,
+         selectPlan: true,
+         addOns : false,
+      }))
+    }
+   }
+
+
+   function chooseTenurity(e){
+      console.log(e.target.checked)
+      if(e.target.checked){
+         setTogglePlan(prev=>({
+            ...prev,
+            yearlyplan : true,
+            monthlyplan: false,
+         }))
+      }else{
+         setTogglePlan(prev=>({
+            ...prev,
+            yearlyplan : false,
+            monthlyplan: true,
+         }))
+      }
+      // setTogglePlan(prev=>({
+      //    ...prev,
+      //    yearlyplan: !togglePlan.yearlyplan,
+      //    monthlyplan: !togglePlan.monthlyplan
+      // }))
+   }
+
+function choosePlan(e){
+   // console.log(e.target.classList)
+   if(e.target.classList.contains('arcade')){
+      setTogglePlan(prev=>({
+         ...prev,
+         arcade: !togglePlan.arcade,
+         advance:false,
+         pro: false,
+      }))
+   }else if(e.target.classList.contains('advance')){
+      setTogglePlan(prev=>({
+         ...prev,
+         arcade: false,
+         advance: !togglePlan.advance,
+         pro: false,
+      }))
+   }else if(e.target.classList.contains('pro')){
+      setTogglePlan(prev=>({
+         ...prev,
+         arcade: false,
+         advance:false,
+         pro: !togglePlan.pro,
+      }))
+   }
 }
-   // console.log(navigation)
-   console.log(info)
-   console.log(alert)
+
+function handleAddons(e){
+   const {name,checked} = e.target
+   setAddOns(prev=>({
+      ...prev,
+      [name]: checked
+   }))
+}
+
+// console.log(navigation)
+// console.log(addons)
+console.log(togglePlan.monthlyplan, togglePlan.yearlyplan)
 
     return(
        <main className="hero">
@@ -131,24 +230,41 @@ function handleNext(){
                info = {navigation.yourInfo}
                name = {info.name}              
                email = {info.email}
-               pnoneNumber = {info.phoneNumber}
+               number = {info.number}
                updateInfo = {updateInfo}
-               // handleBack = {handleBack}
                handleNext = {handleNext}
-               // alert = {alert}
             />}
 
             {navigation.selectPlan && 
             <Plans 
                plans = {navigation.selectPlan}
+               togglePlan = {togglePlan}
+               choosePlan = {choosePlan}
+               chooseTenurity = {chooseTenurity}
+               goBack = {handleBack}
+               handleNext = {handleNext}
             />}
             {navigation.addOns && 
             <Addons 
-               addons = {navigation.addOns}
+               // addons = {navigation.addOns}
+               addOns = {addons}
+               handleAddons = {handleAddons}
+               onlineService = {addons.onlineService}
+               extraStorage = {addons.extraStorage}
+               customizeProfile = {addons.customizeProfile}
+               handleBack = {handleBack}
+               handleNext = {handleNext}
+               togglePlan = {togglePlan}
+
             />}
             {navigation.summary && 
             <Checkout 
                summary = {navigation.summary}
+               togglePlan = {togglePlan}
+               addOns = {addons}
+               navigation = {navigation}
+               // consfirm = {handleConfirm}
+               handleBack = {handleBack}
             />}
           </section>
        </main>

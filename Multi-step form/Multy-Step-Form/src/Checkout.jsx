@@ -1,5 +1,8 @@
-import Plans from "./Plans"
-export default function Checkout(){
+export default function Checkout(props){
+    let arcade = props.togglePlan.arcade
+    let advance = props.togglePlan.advance
+    let pro = props.togglePlan.pro
+
     return(
         <section className="input-area">
         <h1 className="title">Finishing up</h1>
@@ -11,26 +14,73 @@ export default function Checkout(){
 
                 <div className="final-plans main-plan">
                     <div className="final-plan">
-                        <h3 className="final-plan-name">Arcade(monthly)</h3>
-                        <a href={<Plans />}>Change</a>
+                      { arcade && <h3 
+                        className="final-plan-name"
+                        >
+                        {props.togglePlan.yearlyplan?'Arcade(yearly)': 'Arcade(monthly)'}
+                        </h3>}
+
+                      { advance && <h3 
+                        className="final-plan-name"
+                        >
+                        {props.togglePlan.yearlyplan?'Advance(yearly)': 'Advance(monthly)'}
+                        </h3>}
+
+                      { pro && <h3 
+                        className="final-plan-name"
+                        >
+                        {props.togglePlan.yearlyplan?'Pro(yearly)': 'Pro(monthly)'}
+                        </h3>}
+
+                        <a href="">Change</a>
                     </div>
-                    <p className="final-price">$9/mo</p>
+
+                    {arcade && <p 
+                    className="final-price">
+                     {props.togglePlan.yearlyplan? props.togglePlan.arcadeYearly: props.togglePlan.arcadeMonthly}
+                    </p>}
+                    {advance && <p 
+                    className="final-price">
+                     {props.togglePlan.yearlyplan? props.togglePlan.advanceYearly: props.togglePlan.advanceMonthly}
+                    </p>}
+                    {pro && <p 
+                    className="final-price">
+                     {props.togglePlan.yearlyplan? props.togglePlan.proYearly: props.togglePlan.proMonthly}
+                    </p>}
+
                 </div>
                 <hr className="line"></hr>
 
 
+            {props.addOns.onlineService && 
                 <div className="addon-plans final-plans">
                     <div className="addon-plan-name">Online service</div>
-                    <p className="addon-price">$9/mo</p>
+                            <p className="addon-price">{props.togglePlan.yearlyplan? props.addOns.onlineServiceYearlyPrice: props.addOns.onlineServiceMonthlyPrice}
+                            </p>
                 </div>
-                <div className="addon-plans final-plans">
+            }
+               { props.addOns.extraStorage && 
+               <div className="addon-plans final-plans">
                     <div className="addon-plan-name">Larger storage</div>
-                    <p className="addon-price">$9/mo</p>
-                </div>
+                    
+                        
+                            <p className="addon-price">{props.togglePlan.yearlyplan? props.addOns.extraStorageYearlyPrice: props.addOns.extraStorageMonthlyPrice}
+                            </p>
+                
+                </div>}
+               
+               { props.addOns.customizeProfile && 
+               <div className="addon-plans final-plans">
+                    <div className="addon-plan-name">Customizable</div>
+                    
+                            <p className="addon-price">{props.togglePlan.yearlyplan? props.addOns.customizeProfileYearlyPrice: props.addOns.customizeProfileMonthlyPrice}
+                            </p>
+                
+                </div>}
                 
             </div>
             <div className="total-amomunt final-plans">
-                <p className="total">Total(per month)</p>
+                <p className="total">Total{props.togglePlan.yearlyplan?'(yearly)': '(monthly)'}</p>
                 <p className="total-price">+$12/mo</p>
             </div>
         </div>

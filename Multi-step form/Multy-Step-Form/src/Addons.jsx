@@ -9,28 +9,49 @@ export default function Addons(props){
             <div className="add-ons">
 
                 <div className="online service">
-                    <input type='checkbox' id="checkbox"></input>
+                    <input 
+                        type='checkbox' 
+                        id="checkbox"
+                        name="onlineService"
+                        onChange={props.handleAddons}
+                        checked = {props.onlineService}
+                        ></input>
                     <div className="services">
                      <h3 className="service-title">Online service</h3>
                      <p className="service-description">Access to multiplayer games</p>
                     </div>
-                    <p className="pricing">$1/mo</p>
+                    <p className="pricing">{props.togglePlan.yearlyplan? props.addOns.onlineServiceYearlyPrice : props.addOns.onlineServiceMonthlyPrice}</p>
                 </div>
+
                 <div className="online service">
-                    <input type='checkbox' id="checkbox"></input>
+                    <input 
+                        type='checkbox' 
+                        id="checkbox"
+                        name="extraStorage"
+                        onChange={props.handleAddons}
+                        checked = {props.extraStorage}
+                        ></input>
                     <div className="services">
                      <h3 className="service-title">Larger Storage</h3>
                      <p className="service-description">Extra 1TB of cloud save</p>
                     </div>
-                    <p className="pricing">$2/mo</p>
+                    <p className="pricing">{props.togglePlan.yearlyplan? props.addOns.extraStorageYearlyPrice : props.addOns.extraStorageMonthlyPrice}</p>
                 </div>
+
                 <div className="online service">
-                    <input type='checkbox' id="checkbox"></input>
+                    <input 
+                        type='checkbox' 
+                        id="checkbox"
+                        name ='customizeProfile'
+                        onChange={props.handleAddons}
+                        checked = {props.customizeProfile}
+                        ></input>
+
                     <div className="services">
                      <h3 className="service-title">Customizable Profile</h3>
                      <p className="service-description">Customize theme on your profile</p>
                     </div>
-                    <p className="pricing">$1/mo</p>
+                    <p className="pricing">{props.togglePlan.yearlyplan? props.addOns.customizeProfileYearlyPrice : props.addOns.customizeProfileMonthlyPrice}</p>
                 </div>
    
             </div>
@@ -38,8 +59,14 @@ export default function Addons(props){
         </div>
 
         <div className="btn-container">
-            <h4 className="backBtn">Go Back</h4>
-            <button className="btn nextStep">Next Step</button>
+            <h4 
+            className="backBtn"
+            onClick={props.handleBack}
+            >Go Back</h4>
+            <button 
+            className="btn nextStep"
+            onClick={props.handleNext}
+            >Next Step</button>
         </div>
     </section>
     )
