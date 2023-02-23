@@ -1,69 +1,416 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* # Front-end Style Guide
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+## Layout
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+The designs were created to the following widths:
+
+- Mobile: 375px
+- Desktop: 1440px
+
+## Colors
+
+### Primary
+
+- Marine blue: hsl(213, 96%, 18%)
+- Purplish blue: hsl(243, 100%, 62%)
+- Pastel blue: hsl(228, 100%, 84%)
+- Light blue: hsl(206, 94%, 87%)
+- Strawberry red: hsl(354, 84%, 57%)
+
+### Neutral
+
+- Cool gray: hsl(231, 11%, 63%)
+- Light gray: hsl(229, 24%, 87%)
+- Magnolia: hsl(217, 100%, 97%)
+- Alabaster: hsl(231, 100%, 99%)
+- White: hsl(0, 0%, 100%)
+
+## Typography
+
+### Body Copy
+
+- Font size (paragraph): 16px
+
+### Font
+
+- Family: [Ubuntu](https://fonts.google.com/specimen/Ubuntu)
+- Weights: 400, 500, 700 */
+
+:root{
+
+    /* ### Primary */
+
+    --Marine-blue: hsl(213, 96%, 18%);
+    --Purplish-blue: hsl(243, 100%, 62%);
+    --Pastel-blue: hsl(228, 100%, 84%);
+    --Light-blue: hsl(206, 94%, 87%);
+    --Strawberry-red: hsl(354, 84%, 57%);
+
+    /* ### Neutral */
+    --Cool-gray: hsl(231, 11%, 63%);
+    --Light-gray: hsl(229, 24%, 87%);
+    --Magnolia: hsl(217, 100%, 97%);
+    --Alabaster: hsl(231, 100%, 99%);
+    --White: hsl(0, 0%, 100%);
+
+    /* font size */
+    --1rem : 1rem;
+
+    /* font weight */
+    --regular: 400;
+    --medium: 500;
+    --bold: 700;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('/fonts/Ubuntu.ttf');
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
 }
+body{
+    font-family: 'Ubuntu';
+    height: 100vh;
+}
+#root{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--Magnolia);
+    height: 100vh;
+}
+.hero{
+    /* width: 1440px; */
+    width: 70rem;
+    background-color: var(--White);
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 9);
+    
+}
+.main-container{
+    display: flex;
+    /* gap: 5rem; */
+}
+
+/* Sidebar */
+.sidebar{
+    background: url(/bg-sidebar-desktop.svg) no-repeat center center;
+    height: 35rem;
+    width: 17rem;
+    border-radius: 12px;
+    padding: 2rem;
+}
+
+.step-container{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.firstStep{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    gap: 10px;
+    z-index: 1000;
+}
+.count1{
+    font-size: 16px;
+    height: 2rem;
+    width: 2rem;
+    border: 1px solid white;
+    color: var(--White);
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--White);
+    font-weight: var(--bold);
+}
+.count1.active{
+    background-color: var(--Light-blue);
+    color: var(--marine-blue);
+}
+.steps{
+    color: var(--Cool-gray);
+    font-size: 12px;
+    font-family: 'Ubuntu';
+}
+.stepHeading{
+    color: var(--White);
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: 'Ubuntu';
+}
+
+
+/* Form */
+.title{
+    font-size: 3rem;
+    color: var(--Marine-blue);
+}
+.description{
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-weight: var(--regular);
+    color: var(--Cool-gray);
+}
+.input-area{
+    position: relative;
+    padding: 2rem 7rem 1rem;
+}
+form>label{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-weight: var(--regular);
+    color: var(--Marine-blue);
+    font-family: 'Ubuntu';
+    position: relative;
+}
+label>input{
+    height: 3rem;
+    border-radius: 10px;
+    border: 1px solid var(--Cool-gray);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: var(--bold);
+    color: var(--marine-blue);
+    outline: none;
+    font-family: 'Ubuntu';
+}
+input.active{
+    outline: .5px solid var(--Purplish-blue);
+}
+.alert{
+    position: absolute;
+    right: 0;
+    color: red;
+    /* display: none; */
+}
+
+.btn{
+    height: 3rem;
+    width: 8rem;
+    border-radius: 10px;
+    background-color: var(--Marine-blue);
+    color: var(--Magnolia);
+    font-size: .9rem;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    font-family: 'Ubuntu';
+    margin-left: auto;
+}
+
+
+/* *************Plans Page************** */
+
+.plans{
+    display: flex;
+    gap: 1rem;
+}
+.plan{
+    border: 1px solid var(--Purplish-blue);
+    height: 13.5rem;
+    width: 11.6rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.logo{
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: auto;
+}
+.arcade-title{
+    color: var(--Marine-blue);
+    font-family: 'Ubuntu';
+}
+.pricing{
+    color: var(--Cool-gray);
+}
+.arcade-logo{
+    background: url(/icon-arcade.svg) no-repeat top left;
+}
+.advance-logo{
+    background: url(/icon-advanced.svg) no-repeat top left;
+}
+.pro-logo{
+    background: url(/icon-pro.svg) no-repeat top left;
+}
+
+
+.select-plans{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    background-color: var(--Light-gray);
+    color: var(--Marine-blue);
+    height: 3rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+}
+
+/* ************************toggle plans***************************** */
+.toggle{
+    height: 41px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle label{
+    width: 75px;
+    height: 33px;
+    position: relative;
+    display: block;
+    background-color: var(--Marine-blue);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .4s;
+}
+
+.toggle label::after{
+    content: '';
+    width: 29px;
+    height: 29px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    background-color: var(--Alabaster);
+    border-radius: 20px;
+    transition: .4s;
+
+}
+.toggle input{
+    width: 0;
+    height: 0;
+    visibility: none;
+}
+
+.toggle input:checked + label{
+    background: black;
+}
+.toggle input:checked + label::after{
+    left: 72px;
+    transform: translateX(-100%);
+    background: var(--Alabaster);
+}
+
+  /* ****************************** */
+
+.btn-container{
+    height: 6rem;
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+.backBtn{
+    font-size: 1rem;
+    font-weight: var(--bold);
+    color: var(--Marine-blue);
+}
+
+
+/* ***************Add Ons********************* */
+.service{
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    border: 1px solid var(--Marine-blue);
+    border-radius: 10px;
+    padding: .5rem 1rem;
+    margin: 1rem 0;
+    color: var(--Marine-blue);
+    height: 4rem;
+}
+.service input{
+    height: 1.3rem;
+    width: 1.3rem;
+}
+.services{
+    margin-right: auto;
+    margin-left: 2rem;
+}
+.service-title{
+    font-size: 1rem;
+}
+.service-description{
+    font-size: .8rem;
+    font-weight: var(--regular);
+    color: var(--Cool-gray);
+}
+/* ***************Add Ons********************* */
+
+/* ***************CheckOut******************** */
+    .checkout-container{
+        margin-bottom: 2rem;
+    }
+    .selected-plans{
+        background-color: var(--Alabaster);
+        border-radius: 10px;
+    }
+    .main-plan{
+       margin-bottom: 1rem;
+       font-size: 1rem;
+    }
+    hr{
+        width: 90%;
+        margin: auto;
+        color: var(--Light-gray);
+        opacity: 30%;
+    }
+    .final-plans{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem;
+    }
+    .confirm-btn{
+        background: var(--Purplish-blue);
+    }
+    .final-plans a{
+        text-decoration: underline;
+    }
+    .final-plan-name{
+        font-size: 1rem;
+        color: var(--Marine-blue);
+    }
+    .addon-plan-name{
+        font-size: .8rem;
+        color: var(--Cool-gray);
+        font-weight: var(--regular);
+    }
+    .final-price{
+        font-weight: var(--bold);
+        color: var(--Marine-blue);
+    }
+    .addon-price{
+        font-weight: var(--regular);
+        font-size: .8rem;
+        color: var(--Marine-blue);
+    }
+    .total{
+        color: var(--Cool-gray);
+    }
+    .total-price{
+        font-size: 1.2rem;
+        font-weight: var(--bold);
+        color: var(--Marine-blue);
+    }
+/* ***************CheckOut******************** */
