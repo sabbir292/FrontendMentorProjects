@@ -479,7 +479,9 @@ input:focus{
         background-color: var(--Light-blue);
     }
     #root{
-        height: auto;
+        display: block;
+        position: relative;
+        height: 100vh;
         width: auto;
         margin: 0;
         padding: 0;
@@ -493,7 +495,7 @@ input:focus{
     justify-content: center;
     width: 100vw;
     padding: 0;
-    margin: auto;
+    margin: 0;
     position: relative;
     
    }
