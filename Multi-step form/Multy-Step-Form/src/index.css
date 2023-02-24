@@ -510,7 +510,7 @@ input:focus{
    .sidebar{
     background: url(/bg-sidebar-mobile.svg) no-repeat center center;
     width: 100vw;
-    height: 30vh;
+    height: 25vh;
     background-size: cover;
     padding: 2rem;
     border-radius: 0px;
@@ -521,26 +521,26 @@ input:focus{
     justify-content: center;
     text-align: center;
     width: 100%;
-    gap: 2rem;
+    gap: 1rem;
 
    }
    .firstStep{
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
    }
    .step{
     display: none;
    }
    .count1{
-    height: 4rem;
-    width: 4rem;
+    height: 3rem;
+    width: 3rem;
    }
    .input-area{
     width: 85%;
     margin-top: -5rem;
     background-color: var(--Alabaster);
     /* margin: auto; */
-    padding: 3rem 2rem;
+    padding: 2rem 2rem;
     border-radius: 1rem;
    }
    .btn-container{
@@ -549,10 +549,24 @@ input:focus{
     left: 0;
     background: var(--White);
     width: 100vw;
-    padding: 1rem 5rem;
+    height: 4rem;
+    padding: .8rem 4rem;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
 
    }
    .nextStep{
     margin-left: auto;
+   }
+
+   .title{
+    font-size: 2rem;
+   }
+   .description{
+    font-size: 1rem;
+   }
+   label>input{
+    height: 2.5rem;
    }
 }
