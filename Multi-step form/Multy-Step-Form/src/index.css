@@ -354,6 +354,11 @@ input:focus{
     font-size: 1rem;
     font-weight: var(--bold);
     color: var(--Marine-blue);
+    transition: .3s;
+}
+.backBtn:hover{
+    font-size: 1.1rem;
+    cursor: pointer;
 }
 
 

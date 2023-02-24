@@ -90,7 +90,9 @@ export default function Checkout(props){
         </div>
 
         <div className="btn-container">
-            <h4 className="backBtn">Go Back</h4>
+            <h4 
+            onClick={props.handleBack}
+            className="backBtn">Go Back</h4>
             <button 
             onClick={props.confirm}
             className="btn nextStep confirm-btn">Confirm</button>
