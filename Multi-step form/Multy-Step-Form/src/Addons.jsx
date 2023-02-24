@@ -8,7 +8,7 @@ export default function Addons(props){
         <div className="addons-container">
             <div className="add-ons">
 
-                <div className="online service">
+                <div className={`online service ${props.onlineService? 'active':''}`}>
                     <input 
                         type='checkbox' 
                         id="checkbox"
@@ -23,7 +23,7 @@ export default function Addons(props){
                     <p className="pricing">{props.togglePlan.yearlyplan? props.addOns.onlineServiceYearlyPrice : props.addOns.onlineServiceMonthlyPrice}</p>
                 </div>
 
-                <div className="online service">
+                <div className={`online service ${props.extraStorage? 'active':''}`}>
                     <input 
                         type='checkbox' 
                         id="checkbox"
@@ -38,7 +38,7 @@ export default function Addons(props){
                     <p className="pricing">{props.togglePlan.yearlyplan? props.addOns.extraStorageYearlyPrice : props.addOns.extraStorageMonthlyPrice}</p>
                 </div>
 
-                <div className="online service">
+                <div className={`online service ${props.customizeProfile? 'active':''}`}>
                     <input 
                         type='checkbox' 
                         id="checkbox"

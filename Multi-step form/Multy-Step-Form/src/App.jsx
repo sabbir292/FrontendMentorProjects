@@ -6,6 +6,7 @@ import Sidebar from "./Sidebar";
 import Plans from "./Plans";
 import Addons from "./Addons";
 import Checkout from "./Checkout";
+import Confirmation from "./Confirmation";
 
 export default function App(){
    // *********states**********************
@@ -14,6 +15,7 @@ export default function App(){
       selectPlan: false,
       addOns: false,
       summary: false,
+      confirmation: false,
    })
 
    const [info, setInfo]=React.useState({
@@ -48,6 +50,7 @@ export default function App(){
       customizeProfileYearlyPrice: '$20/yr',
 
    })
+
 // *********states**********************
 
 // *********Functions**********************
@@ -61,6 +64,7 @@ export default function App(){
             selectPlan: false,
             addOns:false,
             summary:false,
+            confirmation:false
          }))
       }
       else if(event.target.classList.contains('planPage')){
@@ -71,6 +75,7 @@ export default function App(){
             selectPlan: true,
             addOns:false,
             summary:false,
+            confirmation:false,
          }))
       }
       else if(event.target.classList.contains('addonPage')){
@@ -80,6 +85,7 @@ export default function App(){
             selectPlan: false,
             addOns:true,
             summary:false,
+            confirmation:false
          }))
       }
       else if(event.target.classList.contains('summaryPage')){
@@ -89,6 +95,7 @@ export default function App(){
             selectPlan: false,
             addOns:false,
             summary:true,
+            confirmation:false
          }))
       }
    }
@@ -151,11 +158,28 @@ function handleBack(){
          addOns : false,
       }))
     }
+    if(navigation.summary){
+      setNavigation(prev=>({
+         ...prev,
+         summary:false,
+         addOns : true,
+      }))
+    }
    }
 
+   function changePlan(){
+      if(navigation.summary){
+         setNavigation(prev=>({
+            ...prev,
+            yourInfo:false,
+            summary: false,
+            addOns: false,
+            selectPlan: true,
+         }))
+      }
+   }
 
    function chooseTenurity(e){
-      console.log(e.target.checked)
       if(e.target.checked){
          setTogglePlan(prev=>({
             ...prev,
@@ -169,15 +193,9 @@ function handleBack(){
             monthlyplan: true,
          }))
       }
-      // setTogglePlan(prev=>({
-      //    ...prev,
-      //    yearlyplan: !togglePlan.yearlyplan,
-      //    monthlyplan: !togglePlan.monthlyplan
-      // }))
    }
 
 function choosePlan(e){
-   // console.log(e.target.classList)
    if(e.target.classList.contains('arcade')){
       setTogglePlan(prev=>({
          ...prev,
@@ -208,11 +226,82 @@ function handleAddons(e){
       ...prev,
       [name]: checked
    }))
+
+
 }
 
-// console.log(navigation)
-// console.log(addons)
-console.log(togglePlan.monthlyplan, togglePlan.yearlyplan)
+function PlanPrice(e){
+   if(togglePlan.yearlyplan){
+      if(togglePlan.arcade){
+         return 90
+      }else if(togglePlan.advance){
+         return 120
+      }else{
+         return 150
+      }
+   }else{
+      if(togglePlan.arcade){
+         return 9
+      }else if(togglePlan.advance){
+         return 15
+      }else{
+         return 20
+      }
+   }
+}
+function addOnPrice(e){
+   if(togglePlan.yearlyplan){
+      if(addons.onlineService && addons.extraStorage && addons.customizeProfile){
+         return 10+20+20
+      }else if(addons.onlineService && addons.extraStorage){
+         return 10+20
+      }else if(addons.onlineService && addons.customizeProfile){
+         return 10+20
+      }else if(addons.customizeProfile && addons.extraStorage){
+         return 20+20
+      }
+      else if(addons.onlineService){
+         return 10
+      }else if(addons.extraStorage){
+         return 20
+      }else if(addons.customizeProfile){
+         return 20
+      }else{
+         return 0
+      }
+   }else{
+      if(addons.onlineService && addons.extraStorage && addons.customizeProfile){
+         return 1+1+1
+      }else if(addons.onlineService && addons.extraStorage){
+         return 1+1
+      }else if(addons.onlineService && addons.customizeProfile){
+         return 1+1
+      }else if(addons.customizeProfile && addons.extraStorage){
+         return 1+1
+      }
+      else if(addons.onlineService){
+         return 1
+      }else if(addons.extraStorage){
+         return 1
+      }else if(addons.customizeProfile){
+         return 1
+      }else{
+         return 0
+      }
+}
+}
+
+function finalAmount(){
+   return (addOnPrice()+ PlanPrice())
+}
+
+function handleConfirm(){
+   setNavigation(prev=>({
+      ...prev,
+      summary: false,
+      confirmation: true,
+   }))
+}
 
     return(
        <main className="hero">
@@ -263,9 +352,14 @@ console.log(togglePlan.monthlyplan, togglePlan.yearlyplan)
                togglePlan = {togglePlan}
                addOns = {addons}
                navigation = {navigation}
-               // consfirm = {handleConfirm}
+               confirm = {handleConfirm}
                handleBack = {handleBack}
+               finalAmount = {finalAmount}
+               changePlan = {changePlan}
             />}
+            {navigation.confirmation &&
+               <Confirmation />
+            }
           </section>
        </main>
     )

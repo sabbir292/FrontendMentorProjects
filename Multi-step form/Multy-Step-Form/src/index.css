@@ -98,6 +98,9 @@ body{
     display: flex;
     /* gap: 5rem; */
 }
+a:hover{
+    cursor: pointer;
+}
 
 /* Sidebar */
 .sidebar{
@@ -163,9 +166,13 @@ body{
     font-weight: var(--regular);
     color: var(--Cool-gray);
 }
+input,label{
+    cursor: pointer;
+}
 .input-area{
+    width: 70%;
     position: relative;
-    padding: 2rem 7rem 1rem;
+    padding: 1rem 7rem 1rem;
 }
 form>label{
     display: flex;
@@ -188,13 +195,14 @@ label>input{
     outline: none;
     font-family: 'Ubuntu';
 }
-input.active{
-    outline: .5px solid var(--Purplish-blue);
+input:focus{
+    border: .5px solid var(--Purplish-blue);
 }
 .alert{
     position: absolute;
     right: 0;
     color: red;
+    border: .5px soild red;
     /* display: none; */
 }
 
@@ -210,8 +218,13 @@ input.active{
     outline: none;
     font-family: 'Ubuntu';
     margin-left: auto;
-}
+    transition: .4s ease-in;
 
+}
+.btn:hover,:focus{
+    cursor: pointer;
+    font-size: 1rem;
+}
 
 /* *************Plans Page************** */
 
@@ -220,15 +233,20 @@ input.active{
     gap: 1rem;
 }
 .plan{
-    border: 1px solid var(--Purplish-blue);
+    border: 1px solid var(--Cool-gray);
     height: 13.5rem;
     width: 11.6rem;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     padding: 1rem;
+    transition: .4s;
 }
 
+.plan:hover,:focus{
+    border: 1px solid var(--Purplish-blue);
+    cursor: pointer;
+}
 .logo{
     height: 3rem;
     width: 3rem;
@@ -250,7 +268,10 @@ input.active{
 .pro-logo{
     background: url(/icon-pro.svg) no-repeat top left;
 }
-
+.arcade.active,.advance.active,.pro.active{
+    cursor: pointer;
+    border: 1px solid var(--Purplish-blue);
+}
 
 .select-plans{
     position: relative;
@@ -348,6 +369,13 @@ input.active{
     color: var(--Marine-blue);
     height: 4rem;
 }
+.service:hover,:focus{
+    border: 1px solid var(--Purplish-blue);
+    cursor: pointer;
+}
+.service.active{
+    border: 1px solid var(--Purplish-blue);
+}
 .service input{
     height: 1.3rem;
     width: 1.3rem;
@@ -423,3 +451,17 @@ input.active{
         color: var(--Marine-blue);
     }
 /* ***************CheckOut******************** */
+/* ***************Confirmation******************** */
+.confirmation-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    gap: 1rem;
+}
+.confirmation-text{
+    color: var(--Cool-gray);
+}

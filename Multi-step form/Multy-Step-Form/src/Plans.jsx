@@ -9,7 +9,7 @@ export default function Plans(props){
                     <div className="plans">
 
                         <div 
-                        className="arcade plan"
+                        className={`arcade plan ${props.togglePlan.arcade? 'active':''}`}
                         onClick={props.choosePlan}
                         >
                             <div className="arcade-logo logo"></div>
@@ -25,7 +25,7 @@ export default function Plans(props){
                         </div>
 
                         <div 
-                        className="advance plan"
+                        className={`advance plan ${props.togglePlan.advance? 'active':''}`}
                         onClick={props.choosePlan}
                         >
                             <div className="advance-logo logo"></div>
@@ -41,7 +41,7 @@ export default function Plans(props){
                         </div>
 
                         <div 
-                        className="pro plan"
+                        className={`pro plan ${props.togglePlan.pro? 'active':''}`}
                         onClick={props.choosePlan}
                         >
                             <div className="pro-logo logo"></div>

@@ -10,7 +10,9 @@ export default function Checkout(props){
         </p>
 
         <div className="checkout-container">
-            <div className="selected-plans">
+            <div 
+             className="selected-plans">
+            
 
                 <div className="final-plans main-plan">
                     <div className="final-plan">
@@ -32,7 +34,9 @@ export default function Checkout(props){
                         {props.togglePlan.yearlyplan?'Pro(yearly)': 'Pro(monthly)'}
                         </h3>}
 
-                        <a href="">Change</a>
+                        <a 
+                        onClick={props.changePlan}
+                        >Change</a>
                     </div>
 
                     {arcade && <p 
@@ -81,13 +85,15 @@ export default function Checkout(props){
             </div>
             <div className="total-amomunt final-plans">
                 <p className="total">Total{props.togglePlan.yearlyplan?'(yearly)': '(monthly)'}</p>
-                <p className="total-price">+$12/mo</p>
+                <p className="total-price">+${props.finalAmount()}{props.togglePlan.yearlyplan? '/yr': '/mo'}</p>
             </div>
         </div>
 
         <div className="btn-container">
             <h4 className="backBtn">Go Back</h4>
-            <button className="btn nextStep confirm-btn">Confirm</button>
+            <button 
+            onClick={props.confirm}
+            className="btn nextStep confirm-btn">Confirm</button>
         </div>
     </section>
     )
